@@ -3,7 +3,7 @@
 
 # === VARIABLES === #
 
-DOT_DIRECTORY = "${HOME}/dotfiles"
+DOT_DIRECTORY="${HOME}/dotfiles"
 
 # === FUNCTION === #
 
