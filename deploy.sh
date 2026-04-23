@@ -14,6 +14,21 @@ has() {
 
 # === DEPLOY SCRIPTS === #
 
+## === AUTOMATICALLY INSTALL HOMEBREW === ##
+
+if has "brew"; then
+    echo "[$(tput setaf 2)✔︎$(tput sgr0)] Homebrew is already installed!"
+else
+    echo "Installing Homebrew..."
+    ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+fi
+
+if has "brew"; then
+    echo "Updating Homebrew..."
+    brew update && brew upgrade
+    [[ $? ]] && echo "[$(tput setaf 2)✔︎$(tput sgr0)] Homebrew is updated!"
+fi
+
 ## === SYMBOLIC LINKING === ##
 
 cd ${DOT_DIRECTORY}
