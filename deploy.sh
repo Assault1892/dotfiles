@@ -9,7 +9,7 @@ DOT_DIRECTORY="${HOME}/dotfiles"
 
 # バイナリの存在確認
 has() {
-    type "$1" > /dev/null 2>&1
+  type "$1" >/dev/null 2>&1
 }
 
 # === DEPLOY SCRIPTS === #
@@ -17,30 +17,35 @@ has() {
 ## === AUTOMATICALLY INSTALL HOMEBREW === ##
 
 if has "brew"; then
-    echo "[$(tput setaf 2)✔︎$(tput sgr0)] Homebrew is already installed!"
+  echo "[$(tput setaf 2)✔︎$(tput sgr0)] Homebrew is already installed!"
 else
-    echo "Installing Homebrew..."
-    ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+  echo "Installing Homebrew..."
+  ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 fi
 
 if has "brew"; then
-    echo "Updating Homebrew..."
-    brew update && brew upgrade
-    [[ $? ]] && echo "[$(tput setaf 2)✔︎$(tput sgr0)] Homebrew is updated!"
+  echo "Updating Homebrew..."
+  brew update && brew upgrade
+  [[ $? ]] && echo "[$(tput setaf 2)✔︎$(tput sgr0)] Homebrew is updated!"
 fi
 
 ## === SYMBOLIC LINKING === ##
 
 cd "${DOT_DIRECTORY}"
 
-for f in .??*
-do
-    # ignore some files
-    [[ ${f} = ".git" ]] && continue
-    [[ ${f} = ".gitignore" ]] && continue
-    [[ ${f} = "README.md" ]] && continue
-    [[ ${f} = "deploy.sh" ]] && continue
-    echo "symbolic link create from ${DOT_DIRECTORY}/${f} to ${HOME}/${f}"
-    ln -snfv "${DOT_DIRECTORY}/${f}" "${HOME}/${f}"
+for f in .??*; do
+  # ignore some files
+  [[ ${f} = ".git" ]] && continue
+  [[ ${f} = ".gitignore" ]] && continue
+  [[ ${f} = "README.md" ]] && continue
+  [[ ${f} = "deploy.sh" ]] && continue
+  echo "symbolic link create from ${DOT_DIRECTORY}/${f} to ${HOME}/${f}"
+  ln -snfv "${DOT_DIRECTORY}/${f}" "${HOME}/${f}"
 done
 echo "[$(tput setaf 2)✔︎$(tput sgr0)] deploy complete!"
+
+# === APPLY SHELL RC === #
+
+echo "applying .zshrc changes..."
+source "${DOT_DIRECTORY}/.zshrc"
+echo "[$(tput setaf 2)✔︎$(tput sgr0)] apply complete!"
