@@ -44,8 +44,4 @@ for f in .??*; do
 done
 echo "[$(tput setaf 2)✔︎$(tput sgr0)] deploy complete!"
 
-# === APPLY SHELL RC === #
-
-echo "applying .zshrc changes..."
-source "${DOT_DIRECTORY}/.zshrc"
-echo "[$(tput setaf 2)✔︎$(tput sgr0)] apply complete!"
+echo "run $(source ~/.zshrc) to apply zshrc changes."
