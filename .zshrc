@@ -10,8 +10,7 @@ export EDITOR="vim"
 # === ALIAS === #
 
 alias python="python3"
-alias ls="ls -l"
-alias la="ls -ahl"
+alias ls="ls -ahl"
 alias vim="nvim"
 
 # === PATH === #

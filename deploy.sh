@@ -31,7 +31,7 @@ fi
 
 ## === SYMBOLIC LINKING === ##
 
-cd "${DOT_DIRECTORY} || exit"
+cd "${DOT_DIRECTORY}"
 
 for f in .??*
 do
@@ -40,6 +40,7 @@ do
     [[ ${f} = ".gitignore" ]] && continue
     [[ ${f} = "README.md" ]] && continue
     [[ ${f} = "deploy.sh" ]] && continue
+    echo "symbolic link create from ${DOT_DIRECTORY}/${f} to ${HOME}/${f}"
     ln -snfv "${DOT_DIRECTORY}/${f}" "${HOME}/${f}"
 done
 echo "[$(tput setaf 2)✔︎$(tput sgr0)] deploy complete!"
