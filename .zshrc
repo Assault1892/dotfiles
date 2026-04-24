@@ -3,9 +3,16 @@
 zstyle ":completion:*:commands" rehash 1
 ZLE_REMOVE_SUFFIX_CHARS=$''
 
+# === ENVIRONMENT VARIABLES === #
+
+export EDITOR="vim"
+
 # === ALIAS === #
 
 alias python="python3"
+alias ls="ls -l"
+alias la="ls -ahl"
+alias vim="nvim"
 
 # === PATH === #
 
