@@ -43,5 +43,3 @@ for f in .??*; do
   ln -snfv "${DOT_DIRECTORY}/${f}" "${HOME}/${f}"
 done
 echo "[$(tput setaf 2)✔︎$(tput sgr0)] deploy complete!"
-
-echo "run $(source ~/.zshrc) to apply zshrc changes."
